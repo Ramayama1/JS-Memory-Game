@@ -26,4 +26,16 @@ h3 {
 }
 img {
   border: 1px solid black;
+  border-radius: 4px;
+}
+button {
+  font-size: 20px;
+  padding: 10px 20px;
+  display: block;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+button:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
 }
