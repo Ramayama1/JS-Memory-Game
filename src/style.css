@@ -1,0 +1,29 @@
+body {
+  margin-top: 50px;
+}
+h1,
+p {
+  text-align: center;
+  padding: 5px;
+  margin: 0px;
+  font-size: 40px;
+}
+h3 {
+  width: 400px;
+  margin: 5px auto;
+  padding: 15px;
+}
+.container {
+  display: grid;
+  justify-content: center;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 550px;
+  justify-content: center;
+  grid-gap: 15px;
+}
+img {
+  border: 1px solid black;
+}
