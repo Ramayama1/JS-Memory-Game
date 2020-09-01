@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (optionOneId == optionTwoId) {
       cards[optionOneId].setAttribute("src", "images/image0.jpg");
       cards[optionTwoId].setAttribute("src", "images/image0.jpg");
-      p.innerHTML = "You clicked the same card!";
+      p.innerHTML = "You chose the same card!";
     } else if (cardsChosen[0] === cardsChosen[1]) {
       p.innerHTML = "You found a match!";
       cards[optionOneId].setAttribute("src", "images/image7.png");
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsChosenId = [];
     resultDisplay.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
-      p.innerHTML = "Congratulations! You found them all!";
+      p.innerHTML = "Congrats! You found them all!";
     }
   }
   //flip your card
