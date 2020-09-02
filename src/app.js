@@ -102,13 +102,39 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
   let level = 1;
+  let sec = 30;
   //create the board
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector(".result");
   let cardsChosen = [];
   let cardsChosenId = [];
   let cardsWon = [];
+  let timer;
   function createBoard() {
+    clearInterval(timer);
+    sec;
+    timer = setInterval(function () {
+      document.querySelector(".timer").innerHTML = sec + " secs";
+      sec--;
+      if (sec < 0) {
+        function deleteBoard() {
+          cardsWon = [];
+          cardsChosenId = [];
+          cardsChosen = [];
+          function removeAllChildNodes(parent) {
+            while (parent.firstChild) {
+              parent.removeChild(parent.firstChild);
+            }
+          }
+          const grid = document.querySelector(".grid");
+          removeAllChildNodes(grid);
+        }
+        deleteBoard();
+        document.querySelector("p").innerHTML =
+          "Sorry, You ran out of time!\nPress Reset to try again!";
+        clearInterval(timer);
+      }
+    }, 1000);
     document.querySelector(".level").innerHTML = level;
     for (let i = 0; i < cardArray.length; i++) {
       let card = document.createElement("img");
@@ -140,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cardArray2.shift();
       cardArray.sort(() => 0.5 - Math.random());
       level++;
+      sec = 30 * level;
       createBoard();
     }
     deleteBoard();
@@ -192,3 +219,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   createBoard();
 });
+alert(
+  "Welcome to Mal's Memory Game of Matches:\n\nThere are seven levels to complete.\n\nEvery time you level up, a card will be added to the game!\n\nSee if you can beat the timer to complete all seven levels!\n\nHave fun!"
+);
