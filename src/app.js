@@ -103,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
   let level = 1;
   let sec = 30;
+  let isProcessing = false;
   //create the board
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector(".result");
@@ -182,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionOneId].setAttribute("src", "images/image0.jpg");
       cards[optionTwoId].setAttribute("src", "images/image0.jpg");
       p.innerHTML = "You chose the same card!";
+      isProcessing = false;
     } else if (cardsChosen[0] === cardsChosen[1]) {
       p.innerHTML = "You found a match!";
       cards[optionOneId].setAttribute("src", "images/image7.png");
@@ -189,16 +191,19 @@ document.addEventListener("DOMContentLoaded", () => {
       cards[optionTwoId].removeEventListener("click", flipCard);
       cards[optionOneId].removeEventListener("click", flipCard);
       cardsWon.push(cardsChosen);
+      isProcessing = false;
     } else {
       cards[optionOneId].setAttribute("src", "images/image0.jpg");
       cards[optionTwoId].setAttribute("src", "images/image0.jpg");
       p.innerHTML = "Sorry, try again!";
+      isProcessing = false;
     }
     cardsChosen = [];
     cardsChosenId = [];
     resultDisplay.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
       p.innerHTML = "Congrats! You found them all!";
+      isProcessing = false;
       if (cardArray2.length > 0) {
         levelUp();
       } else {
@@ -209,12 +214,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   //flip your card
   function flipCard() {
-    let cardId = this.getAttribute("data-id");
-    cardsChosen.push(cardArray[cardId].name);
-    cardsChosenId.push(cardId);
-    this.setAttribute("src", cardArray[cardId].img);
-    if (cardsChosen.length === 2) {
-      setTimeout(checkForMatch, 500);
+    if (isProcessing) {
+      return;
+    } else {
+      let cardId = this.getAttribute("data-id");
+      cardsChosen.push(cardArray[cardId].name);
+      cardsChosenId.push(cardId);
+      this.setAttribute("src", cardArray[cardId].img);
+      if (cardsChosen.length === 2) {
+        isProcessing = true;
+        setTimeout(checkForMatch, 1000);
+      }
     }
   }
   createBoard();
