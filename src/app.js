@@ -78,27 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "owl",
-      img: "image/image11.jpb",
+      img: "images/image11.png",
     },
     {
       name: "owl",
-      img: "image/image11.jpb",
+      img: "images/image11.png",
     },
     {
       name: "articFox",
-      img: "image/image12.jpb",
+      img: "images/image12.png",
     },
     {
       name: "articFox",
-      img: "image/image12.jpb",
+      img: "images/image12.png",
     },
     {
       name: "zebra",
-      img: "image/image13.jpb",
+      img: "images/image13.png",
     },
     {
       name: "zebra",
-      img: "image/image13.jpb",
+      img: "images/image13.png",
     },
   ];
   let level = 1;
