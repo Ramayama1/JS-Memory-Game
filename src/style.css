@@ -1,9 +1,9 @@
 body {
   margin: 10px auto;
-  max-width: 600px;
 }
 h1,
-p {
+p,
+h2 {
   text-align: center;
   padding: 5px;
   margin: 0px;

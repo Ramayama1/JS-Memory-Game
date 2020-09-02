@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   //card options
-  const cardArray = [
+  let cardArray = [
     {
       name: "squirrel",
       img: "images/image1.jpg",
@@ -51,6 +51,57 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
   cardArray.sort(() => 0.5 - Math.random());
+  let cardArray2 = [
+    {
+      name: "fox",
+      img: "images/image8.png",
+    },
+    {
+      name: "fox",
+      img: "images/image8.png",
+    },
+    {
+      name: "bunny",
+      img: "images/image9.png",
+    },
+    {
+      name: "bunny",
+      img: "images/image9.png",
+    },
+    {
+      name: "panda",
+      img: "images/image10.png",
+    },
+    {
+      name: "panda",
+      img: "images/image10.png",
+    },
+    {
+      name: "owl",
+      img: "image/image11.jpb",
+    },
+    {
+      name: "owl",
+      img: "image/image11.jpb",
+    },
+    {
+      name: "articFox",
+      img: "image/image12.jpb",
+    },
+    {
+      name: "articFox",
+      img: "image/image12.jpb",
+    },
+    {
+      name: "zebra",
+      img: "image/image13.jpb",
+    },
+    {
+      name: "zebra",
+      img: "image/image13.jpb",
+    },
+  ];
+  let level = 1;
   //create the board
   const grid = document.querySelector(".grid");
   const resultDisplay = document.querySelector(".result");
@@ -58,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardsChosenId = [];
   let cardsWon = [];
   function createBoard() {
+    document.querySelector(".level").innerHTML = level;
     for (let i = 0; i < cardArray.length; i++) {
       let card = document.createElement("img");
       card.setAttribute("src", "images/image0.jpg");
@@ -65,6 +117,32 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
     }
+  }
+  function levelUp() {
+    //delete board function
+    function deleteBoard() {
+      cardsWon = [];
+      cardsChosenId = [];
+      cardsChosen = [];
+      function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+      const grid = document.querySelector(".grid");
+      removeAllChildNodes(grid);
+      addCard();
+    }
+    function addCard() {
+      cardArray.push(cardArray2[0]);
+      cardArray.push(cardArray2[1]);
+      cardArray2.shift();
+      cardArray2.shift();
+      cardArray.sort(() => 0.5 - Math.random());
+      level++;
+      createBoard();
+    }
+    deleteBoard();
   }
   //check for match
   function checkForMatch() {
@@ -94,6 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
     resultDisplay.textContent = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
       p.innerHTML = "Congrats! You found them all!";
+      if (cardArray2.length > 0) {
+        levelUp();
+      } else {
+        alert("Congrats! You completed all the levels!");
+        window.location.reload();
+      }
     }
   }
   //flip your card
