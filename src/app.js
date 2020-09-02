@@ -112,10 +112,12 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardsWon = [];
   let timer;
   function createBoard() {
+    resultDisplay.textContent = "Matches: 0";
+    document.querySelector(".timer").innerHTML = "Timer: ";
     clearInterval(timer);
     sec;
     timer = setInterval(function () {
-      document.querySelector(".timer").innerHTML = sec + " secs";
+      document.querySelector(".timer").innerHTML = "Timer " + sec + " secs";
       sec--;
       if (sec < 0) {
         function deleteBoard() {
@@ -136,10 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(timer);
       }
     }, 1000);
-    document.querySelector(".level").innerHTML = level;
+    document.querySelector(".level").innerHTML = ` Level: ${level}`;
     for (let i = 0; i < cardArray.length; i++) {
       let card = document.createElement("img");
-      card.setAttribute("src", "images/image0.jpg");
+      card.setAttribute("src", cardBack);
       card.setAttribute("data-id", i);
       card.addEventListener("click", flipCard);
       grid.appendChild(card);
@@ -180,29 +182,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const optionTwoId = cardsChosenId[1];
     //console.log(cardsChosenId[0], cardsChosenId[1]);
     if (optionOneId == optionTwoId) {
-      cards[optionOneId].setAttribute("src", "images/image0.jpg");
-      cards[optionTwoId].setAttribute("src", "images/image0.jpg");
+      cards[optionTwoId].setAttribute("src", cardBack);
+      cards[optionOneId].setAttribute("src", cardBack);
       p.innerHTML = "You chose the same card!";
       isProcessing = false;
     } else if (cardsChosen[0] === cardsChosen[1]) {
       p.innerHTML = "You found a match!";
-      cards[optionOneId].setAttribute("src", "images/image7.png");
-      cards[optionTwoId].setAttribute("src", "images/image7.png");
+      cards[optionOneId].setAttribute("src", "images/image7.jpg");
+      cards[optionTwoId].setAttribute("src", "images/image7.jpg");
       cards[optionTwoId].removeEventListener("click", flipCard);
       cards[optionOneId].removeEventListener("click", flipCard);
       cardsWon.push(cardsChosen);
       isProcessing = false;
     } else {
-      cards[optionOneId].setAttribute("src", "images/image0.jpg");
-      cards[optionTwoId].setAttribute("src", "images/image0.jpg");
+      cards[optionOneId].setAttribute("src", cardBack);
+      cards[optionTwoId].setAttribute("src", cardBack);
       p.innerHTML = "Sorry, try again!";
       isProcessing = false;
     }
     cardsChosen = [];
     cardsChosenId = [];
-    resultDisplay.textContent = cardsWon.length;
+    resultDisplay.textContent = `Matches: ${cardsWon.length}`;
     if (cardsWon.length === cardArray.length / 2) {
       p.innerHTML = "Congrats! You found them all!";
+      resultDisplay.textContent = "";
       isProcessing = false;
       if (cardArray2.length > 0) {
         levelUp();
@@ -223,11 +226,48 @@ document.addEventListener("DOMContentLoaded", () => {
       this.setAttribute("src", cardArray[cardId].img);
       if (cardsChosen.length === 2) {
         isProcessing = true;
-        setTimeout(checkForMatch, 1000);
+        setTimeout(checkForMatch, 750);
       }
     }
   }
-  createBoard();
+  //Choose a card function
+  let cardBack = "";
+  function setBack1(event) {
+    event.preventDefault();
+    cardBack = "images/image14.jpg";
+    function removeAllChildNodes(grid) {
+      while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+      }
+    }
+    removeAllChildNodes(grid);
+    document.querySelector("p").innerHTML = "";
+    createBoard();
+  }
+  function setBack2(event) {
+    event.preventDefault();
+    cardBack = "images/image0.jpg";
+    function removeAllChildNodes(grid) {
+      while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+      }
+    }
+    removeAllChildNodes(grid);
+    document.querySelector("p").innerHTML = "";
+    createBoard();
+  }
+  document.querySelector("p").innerHTML = "Choose a Card";
+  let cardBack1 = document.createElement("img");
+  let cardBack2 = document.createElement("img");
+  cardBack1.setAttribute("src", "images/image14.jpg");
+  cardBack2.setAttribute("src", "images/image0.jpg");
+  cardBack1.addEventListener("click", setBack1);
+  cardBack2.addEventListener("click", setBack2);
+
+  grid.appendChild(cardBack1);
+  grid.appendChild(cardBack2);
+
+  //createBoard();
 });
 alert(
   "Welcome to Mal's Memory Game of Matches:\n\nThere are seven levels to complete.\n\nEvery time you level up, a card will be added to the game!\n\nSee if you can beat the timer to complete all seven levels!\n\nHave fun!"
