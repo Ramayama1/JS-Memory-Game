@@ -54,51 +54,51 @@ document.addEventListener("DOMContentLoaded", () => {
   let cardArray2 = [
     {
       name: "fox",
-      img: "images/image8.png",
+      img: "images/image8.jpg",
     },
     {
       name: "fox",
-      img: "images/image8.png",
+      img: "images/image8.jpg",
     },
     {
       name: "bunny",
-      img: "images/image9.png",
+      img: "images/image9.jpg",
     },
     {
       name: "bunny",
-      img: "images/image9.png",
+      img: "images/image9.jpg",
     },
     {
       name: "panda",
-      img: "images/image10.png",
+      img: "images/image10.jpg",
     },
     {
       name: "panda",
-      img: "images/image10.png",
+      img: "images/image10.jpg",
     },
     {
       name: "owl",
-      img: "images/image11.png",
+      img: "images/image11.jpg",
     },
     {
       name: "owl",
-      img: "images/image11.png",
+      img: "images/image11.jpg",
     },
     {
       name: "articFox",
-      img: "images/image12.png",
+      img: "images/image12.jpg",
     },
     {
       name: "articFox",
-      img: "images/image12.png",
+      img: "images/image12.jpg",
     },
     {
       name: "zebra",
-      img: "images/image13.png",
+      img: "images/image13.jpg",
     },
     {
       name: "zebra",
-      img: "images/image13.png",
+      img: "images/image13.jpg",
     },
   ];
   let level = 1;
