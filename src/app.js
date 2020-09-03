@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("p").innerHTML = "";
     createBoard();
   }
-  document.querySelector("p").innerHTML = "Choose a Card";
+  document.querySelector("p").innerHTML = "Choose a deck";
   let cardBack1 = document.createElement("img");
   let cardBack2 = document.createElement("img");
   cardBack1.setAttribute("src", "images/image14.jpg");
