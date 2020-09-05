@@ -256,16 +256,34 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("p").innerHTML = "";
     createBoard();
   }
+  function setBack3(event) {
+    event.preventDefault();
+    cardBack = "images/image15.jpg";
+    function removeAllChildNodes(grid) {
+      while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+      }
+    }
+    removeAllChildNodes(grid);
+    document.querySelector("p").innerHTML = "";
+    createBoard();
+  }
   document.querySelector("p").innerHTML = "Choose a deck";
   let cardBack1 = document.createElement("img");
   let cardBack2 = document.createElement("img");
+  let cardBack3 = document.createElement("img");
+
   cardBack1.setAttribute("src", "images/image14.jpg");
   cardBack2.setAttribute("src", "images/image0.jpg");
+  cardBack3.setAttribute("src", "images/image15.jpg");
+
   cardBack1.addEventListener("click", setBack1);
   cardBack2.addEventListener("click", setBack2);
+  cardBack3.addEventListener("click", setBack3);
 
   grid.appendChild(cardBack1);
   grid.appendChild(cardBack2);
+  grid.appendChild(cardBack3);
 
   //createBoard();
 });
