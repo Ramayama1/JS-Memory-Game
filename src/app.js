@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(timer);
     sec;
     timer = setInterval(function () {
-      document.querySelector(".timer").innerHTML = "Timer " + sec + " secs";
+      document.querySelector(".timer").innerHTML = "Timer: " + sec + " secs";
       sec--;
       if (sec < 0) {
         function deleteBoard() {
