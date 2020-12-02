@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearInterval(timer);
     sec;
     timer = setInterval(function () {
-      document.querySelector(".timer").innerHTML = "Timer: " + sec + " secs";
+      document.querySelector(".timer").innerHTML = "Timer " + sec + " secs";
       sec--;
       if (sec < 0) {
         function deleteBoard() {
@@ -286,12 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
   grid.appendChild(cardBack3);
 
   //createBoard();
-
-  function welcomeInfo(event) {
-    event.preventDefault();
-    alert(
-      "Welcome to Mal's Memory Game of Matches:\n\nThere are seven levels to complete.\n\nEvery time you level up, a card will be added to the game!\n\nSee if you can beat the timer to complete all seven levels!\n\nHave fun!"
-    );
-  }
-  document.querySelector("#welcomeInfo").addEventListener("click", welcomeInfo);
 });
+alert(
+  "Welcome to Mal's Memory Game of Matches:\n\nThere are seven levels to complete.\n\nEvery time you level up, a card will be added to the game!\n\nSee if you can beat the timer to complete all seven levels!\n\nHave fun!"
+);
